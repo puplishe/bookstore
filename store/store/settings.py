@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 #Броек для селери, в нашем случае - redis
-CELERY_BROKER_URL = 'pyamqp://guest:guest@rabbitmq:5672//'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
 
 # Application definition
 
