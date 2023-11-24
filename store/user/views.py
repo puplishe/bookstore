@@ -8,7 +8,7 @@ from .serializers import UserSerializer
 class UserRegistrationView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny,]
     def perform_create(self, serializer: UserSerializer):
         user = serializer.save()
         return Response({'message': 'User created'}, status=status.HTTP_201_CREATED)
