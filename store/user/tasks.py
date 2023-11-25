@@ -1,11 +1,11 @@
 from celery import shared_task
 from django.core.mail import send_mail
+from .utils import send_mail_to
 
 @shared_task
 def send_welcome_email(user_email):
     subject = 'Welcome!'
     message = 'Спасибо за регистрацию'
-    from_email = 'email@example.com'
-    recipient_list = [user_email]
+    recipient_list = user_email
     
-    send_mail(subject, message, from_email, recipient_list)
+    send_mail_to(subject, message, recipient_list)

@@ -12,5 +12,5 @@ class UserRegistrationView(generics.CreateAPIView):
     permission_classes = [AllowAny,]
     def perform_create(self, serializer: UserSerializer):
         user: CustomUser = serializer.save()
-        send_welcome_email(user.email)
+        send_welcome_email.delay(user.email)
         return Response({'message': 'User created'}, status=status.HTTP_201_CREATED)
