@@ -9,5 +9,5 @@ class BookListApiView(viewsets.ModelViewSet):
     serializer_class = BookSerializer
     permission_classes = [AllowAny,]
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
-    search_fields = ['author', 'publish_year', 'name']
+    search_fields = ['author']
     
