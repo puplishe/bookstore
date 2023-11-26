@@ -13,16 +13,19 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='customuser',
             name='is_active',
-            field=models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active'),
+            field=models.BooleanField(
+                default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active'),
         ),
         migrations.AlterField(
             model_name='customuser',
             name='is_staff',
-            field=models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status'),
+            field=models.BooleanField(
+                default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status'),
         ),
         migrations.AlterField(
             model_name='customuser',
             name='is_superuser',
-            field=models.BooleanField(default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status'),
+            field=models.BooleanField(
+                default=False, help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status'),
         ),
     ]

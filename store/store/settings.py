@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 from os import getenv
 from pathlib import Path
-from dotenv import load_dotenv 
+
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-#Брокер для селери, в нашем случае - redis
+# Брокер для селери, в нашем случае - redis
 CELERY_BROKER_URL = f'redis://{getenv("REDIS_HOST")}:{getenv("REDIS_PORT")}/0'
 
 # Application definition
@@ -60,9 +61,9 @@ REST_FRAMEWORK = {
 }
 
 # Выводит приветствие в консоль, вместо отправки на емеил, для наглядности и простоты
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Настройки для нормальной production отправки емеилов
-EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
