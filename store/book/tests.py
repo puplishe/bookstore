@@ -1,7 +1,9 @@
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
+
 from .models import Book
+
 
 class BookListApiTests(APITestCase):
 
@@ -11,6 +13,7 @@ class BookListApiTests(APITestCase):
         self.book2 = Book.objects.create(name='Book 2', author='Author 2', publish_year='2021-10-10', isbn=1)
         self.book3 = Book.objects.create(name='Book 3', author='Author 3', publish_year='2022-10-10', isbn=1)
         self.url = 'book-list'
+
     def test_list_books(self):
         # Проверяем, что эндпоинт списка книг возвращает код 200
         url = reverse(self.url)
