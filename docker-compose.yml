@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    expose:
+      - '8000'
+    depends_on:
+      database:
+        condition: service_healthy
+
+
+  database:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    environment:
+      MYSQL_DATABASE: rest
+      MYSQL_ROOT_PASSWORD: root
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root --password=root"]
+      interval: 5s
+      timeout: 30s
+      retries: 3
+    ports:
+      - "3306:3306"
+
+  celery:
+    build:
+      context: ./
+      dockerfile: Dockerfile.celery
+    command: celery -A store.celery worker -l info --pool=solo
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  redis:
+    image: redis:latest
+    ports:
+    - '6379:6379'
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 30s
+      retries: 3
